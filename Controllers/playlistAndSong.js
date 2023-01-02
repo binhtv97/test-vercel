@@ -80,9 +80,7 @@ exports.delete_song_from_playlist = (req, res) => {
                     return;
                 }
                     if(result.length != 0){
-
                         var query = "DELETE FROM `playlist_song` WHERE song_id = " + songId + " and playlist_owner_id = "+ playlist_id;
-
                         conn.query(query, function(err, result) {
                             if(err){
                                 res.status(400).send(err["sqlMessage"]);
@@ -94,7 +92,6 @@ exports.delete_song_from_playlist = (req, res) => {
                         res.status(404).send("No such playlist from this user")
                         return
                     }
-                    
                 conn.release();
             })
         })
