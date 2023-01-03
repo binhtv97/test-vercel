@@ -672,7 +672,6 @@ app.get("/getpresignedurl", (req, res) => {
                 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
                     IdentityPoolId: process.env.IDENTITY_POOL_ID, // your identity pool id here
                     Logins: {
-                        // Change the key below according to the specific region your user pool is in.
                         'cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_9Cc5585xm': result
                             .getIdToken()
                             .getJwtToken(),
@@ -684,7 +683,7 @@ app.get("/getpresignedurl", (req, res) => {
                         console.error(error);
                     } else {
                         var s3 = new AWS.S3();
-                        var params = {Bucket:'mybucketapp', Key: fileName, Expires: 60};
+                        var params = {Bucket: process.env.S3_BUCKET, Key: fileName, Expires: 60};
                         s3.getSignedUrl('getObject', params, function (err, url) {
                             if(err){
                                 res.status(404).send("No File Found")
