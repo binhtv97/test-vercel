@@ -4,6 +4,7 @@ var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 var AWS = require("aws-sdk");
 var jwt = require('jsonwebtoken');
 var jwkToPem = require('jwk-to-pem');
+import * as AWS from 'aws-sdk/global';
 
 exports.confirm_email = (req, res) => {
     var confirmCode = req.body.confirm_code;
@@ -114,12 +115,12 @@ exports.login = (req, res) => {
             var refreshToken = result.getRefreshToken();
             var idToken = result.getIdToken().getJwtToken();
             
-            AWS.config.region = 'ap-southeast-1';
+            AWS.config.region = 'ap-southeast-1'; // Region
     
             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
                 IdentityPoolId: process.env.IDENTITY_POOL_ID, // your identity pool id here
                 Logins: {
-                    'cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_PFUux5qaA': result
+                    'cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_9Cc5585xm': result
                         .getIdToken()
                         .getJwtToken(),
                 },
