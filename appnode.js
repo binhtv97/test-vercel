@@ -438,8 +438,8 @@ app.post("/confirm", (req, res) => {
     var username = req.body.username;
 
     var poolData = {
-        UserPoolId: 'ap-southeast-1_PFUux5qaA', // Your user pool id here
-        ClientId: '3rfeiefhfq1c0qi0itfe4tdl50', // Your client id here
+        UserPoolId: process.env.USER_POOL_ID, // Your user pool id here
+        ClientId: process.env.CLIENT_ID, // Your client id here
     };
     
     var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
@@ -473,8 +473,8 @@ app.post("/register", (req,res) => {
     var password = req.body.password;
 
     var poolData = {
-        UserPoolId: 'ap-southeast-1_PFUux5qaA', // Your user pool id here
-        ClientId: '3rfeiefhfq1c0qi0itfe4tdl50', // Your client id here
+        UserPoolId: process.env.USER_POOL_ID, // Your user pool id here
+        ClientId: process.env.CLIENT_ID, // Your client id here
     };
     var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
     
@@ -531,8 +531,8 @@ app.post("/login", (req, res) => {
         authenticationData
     );
     var poolData = {
-        UserPoolId: 'ap-southeast-1_PFUux5qaA', // Your user pool id here
-        ClientId: '3rfeiefhfq1c0qi0itfe4tdl50', // Your client id here
+        UserPoolId: process.env.USER_POOL_ID, // Your user pool id here
+        ClientId: process.env.CLIENT_ID, // Your client id here
     };
     var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
     var userData = {
@@ -549,7 +549,7 @@ app.post("/login", (req, res) => {
             AWS.config.region = 'ap-southeast-1';
     
             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-                IdentityPoolId: 'ap-southeast-1:a1bd5688-cc6b-4067-9f86-dbe564f6709c', // your identity pool id here
+                IdentityPoolId: process.env.IDENTITY_POOL_ID, // your identity pool id here
                 Logins: {
                     'cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_PFUux5qaA': result
                         .getIdToken()
@@ -617,8 +617,8 @@ app.post("/refreshtoken", (req, res) =>{
 ////
 app.post("/signout", (req,res) =>{
     var poolData = {
-        UserPoolId: 'ap-southeast-1_PFUux5qaA', // Your user pool id here
-        ClientId: '3rfeiefhfq1c0qi0itfe4tdl50', // Your client id here
+        UserPoolId: process.env.USER_POOL_ID, // Your user pool id here
+        ClientId: process.env.CLIENT_ID, // Your client id here
     };
     var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
     
@@ -654,8 +654,8 @@ app.get("/getpresignedurl", (req, res) => {
             res.status(400).send("Invalid Token")
         }
         var poolData = {
-            UserPoolId: 'ap-southeast-1_PFUux5qaA', // Your user pool id here
-            ClientId: '3rfeiefhfq1c0qi0itfe4tdl50', // Your client id here
+            UserPoolId: process.env.USER_POOL_ID, // Your user pool id here
+            ClientId: process.env.CLIENT_ID, // Your client id here
         };
         var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
         
@@ -670,7 +670,7 @@ app.get("/getpresignedurl", (req, res) => {
                 AWS.config.region = 'ap-southeast-1';
 
                 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-                    IdentityPoolId: 'ap-southeast-1:a1bd5688-cc6b-4067-9f86-dbe564f6709c', // your identity pool id here
+                    IdentityPoolId: process.env.IDENTITY_POOL_ID, // your identity pool id here
                     Logins: {
                         // Change the key below according to the specific region your user pool is in.
                         'cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_PFUux5qaA': result
