@@ -551,7 +551,7 @@ app.post("/login", (req, res) => {
             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
                 IdentityPoolId: process.env.IDENTITY_POOL_ID, // your identity pool id here
                 Logins: {
-                    'cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_PFUux5qaA': result
+                    'cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_9Cc5585xm': result
                         .getIdToken()
                         .getJwtToken(),
                 },
@@ -673,7 +673,7 @@ app.get("/getpresignedurl", (req, res) => {
                     IdentityPoolId: process.env.IDENTITY_POOL_ID, // your identity pool id here
                     Logins: {
                         // Change the key below according to the specific region your user pool is in.
-                        'cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_PFUux5qaA': result
+                        'cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_9Cc5585xm': result
                             .getIdToken()
                             .getJwtToken(),
                     },
