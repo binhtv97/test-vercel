@@ -7,12 +7,12 @@ function uploadFile(file, img, fileName, imgName){
     const fileStream = fs.createReadStream(file.path)
     const imageStream = fs.createReadStream(img.path)
     const bucketParams = {
-        Bucket: "musicstorage",
+        Bucket: process.env.S3_BUCKET,
         Key: "music/"+ fileName,
         Body: fileStream
     }
     const bucketParams2 = {
-        Bucket: "musicstorage",
+        Bucket: process.env.S3_BUCKET,
         Key: "coverImg/" + imgName,
         Body: imageStream
     }
